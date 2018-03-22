@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_192889_demo1.Testemail</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>Testemail</name>
+        <script><![CDATA[var getRequestedFor_details = Class.create();
+getRequestedFor_details.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+	getUserInfo : function (){
+
+	var UserID = this.getParameter("sysparm_uname");
+
+	var result = this.newItem("result");
+	var users = new GlideRecord("sys_user");
+	users.get(UserID);
+	users.query();
+	if(users.next()){
+
+	result.setAttribute("Email", users.email);
+	result.setAttribute("Country", users.location.country);
+	result.setAttribute("Department", users.department.name);
+	result.setAttribute("Line_Manager", users.manager);
+	result.setAttribute("Manager_id", users.manager.user_name );
+	result.setAttribute("Manager_name", users.manager.name );
+	result.setAttribute("user_id", users.user_name );
+	result.setAttribute("Cost_centre", users.cost_center.code );
+	result.setAttribute("username", users.name );
+	//result.setAttribute("Phone", users.phone);                  
+	result.setAttribute("Location", users.location.name);
+	result.setAttribute("Phone", users.mobile_phone);
+	result.setAttribute("Mobile", users.phone);  
+	result.setAttribute("manger_phone_number", users.manager.mobile_phone);  
+	//result.setAttribute("emp_number", users.employee_number);  
+
+
+	}
+
+	return result;
+
+
+	},
+
+
+
+
+	type: 'getRequestedFor_details'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-03-22 10:52:58</sys_created_on>
+        <sys_id>177d1eb0db49130091a1dc50cf961926</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Testemail</sys_name>
+        <sys_package display_value="demo1" source="x_192889_demo1">aa2dde70db05130091a1dc50cf96196b</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="demo1">aa2dde70db05130091a1dc50cf96196b</sys_scope>
+        <sys_update_name>sys_script_include_177d1eb0db49130091a1dc50cf961926</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-03-22 10:52:58</sys_updated_on>
+    </sys_script_include>
+</record_update>
